@@ -3,34 +3,22 @@ import logo from './logo.svg';
 import './App.css';
 import Counter from './features/counter/Counter';
 import styled from '@emotion/styled';
-
-const NavBar = styled('nav')({
-  display: 'flex',
-  justifyContent: 'space-around',
-  backgroundColor: 'rgb(34,37,45)',
-  padding: '0px 60px 0px 60px',
-})
-
-const NavButton = styled('a')({
-  margin: '10px',
-  color: 'gainsboro',
-  textDecoration: 'none',
-  '&:hover': {
-    color: 'white',
-    cursor: 'pointer',
-  }
-})
+import { Route, Routes } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import Home from './components/Home';
+import Blog from './features/blog/Blog';
 
 function App() {
   return (
     <div className="App">
-      <NavBar>
-        <NavButton href="/counter">Counter App</NavButton>
-        <NavButton href="/">Shopping List</NavButton>
-        <NavButton href="/">Task Manager</NavButton>
-      </NavBar>
       <header className="App-header">
-        <Counter />
+        <Routes>
+          <Route path="/" element={<Navbar />}>
+            <Route index path="home" element={<Home />} />
+            <Route path="blog" element={<Blog />} />
+            <Route path="counter" element={<Counter />} />
+          </Route>
+        </Routes>
       </header>
     </div>
   );
