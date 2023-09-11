@@ -2,11 +2,11 @@ import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { nanoid } from '@reduxjs/toolkit'
 import { blogAdded, selectAllBlogs } from './blogSlice'
-import { Button, Card, FormControl, TextField } from '@mui/material'
+import { Button, TextField } from '@mui/material'
 import styled from '@emotion/styled'
 import SimpleBar from "simplebar-react";
 import 'simplebar-react/dist/simplebar.min.css';
-import { createTheme, ThemeProvider, Theme, useTheme } from '@mui/material/styles';
+import { createTheme, ThemeProvider, useTheme } from '@mui/material/styles';
 
 // =============== Styles =================
 const NewBlogContainer = styled('div')({

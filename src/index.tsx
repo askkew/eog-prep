@@ -7,22 +7,8 @@ import { store } from './app/store';
 import { Provider } from 'react-redux';
 import {
   BrowserRouter,
-  createBrowserRouter,
-  RouterProvider,
 } from 'react-router-dom';
 
-// const router = createBrowserRouter([
-//   {
-//     path: '/',
-//     element: <App />,
-//     children: [
-//       {
-//         path: '/counter',
-//         element: <Counter />,
-//       }
-//     ]
-//   },
-// ])
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -34,7 +20,6 @@ root.render(
       <BrowserRouter>
         <App />
       </BrowserRouter>
-      {/* <RouterProvider router={router} /> */}
     </Provider>
   </React.StrictMode>
 );
