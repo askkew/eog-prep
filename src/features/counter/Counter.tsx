@@ -5,18 +5,18 @@ import {
   increment,
   decrement,
   reset,
-  incrementByAmount
+  incrementByAmount,
+  selectCount
 } from './counterSlice';
 import { useState } from 'react';
 import styled from '@emotion/styled';
-
 
 const Container = styled('div')({
   margin: '20px',
 })
 
 const Counter = () => {
-  const count = useSelector((state: {counter: any}) => state.counter.count)
+  const count = useSelector(selectCount)
   const dispatch = useDispatch()
 
   const [incrementAmount, setIncrementAmount] = useState(0);

@@ -6,7 +6,7 @@ import styled from '@emotion/styled';
 import { Route, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './components/Home';
-import Blog from './features/blog/Blog';
+import Blog from './features/blog/BlogsList';
 
 function App() {
   return (
