@@ -30,7 +30,7 @@ const Counter = () => {
 
   return (
     <section>
-      <a>{count}</a>
+      <h4>{count}</h4>
       <Container>
         <Container>
           <Button variant="contained" onClick={() => dispatch(increment())}>+</Button>

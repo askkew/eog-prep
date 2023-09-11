@@ -1,11 +1,12 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
-import { selectAllBlogs } from './blogSlice'
-import { Button, Card, FormControl, TextField } from '@mui/material'
+import React, { useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { nanoid } from '@reduxjs/toolkit'
+import { blogAdded, selectAllBlogs } from './blogSlice'
+import { Button, TextField } from '@mui/material'
 import styled from '@emotion/styled'
 import SimpleBar from "simplebar-react";
 import 'simplebar-react/dist/simplebar.min.css';
-import { createTheme, ThemeProvider, Theme, useTheme } from '@mui/material/styles';
+import { createTheme, ThemeProvider, useTheme } from '@mui/material/styles';
 
 // =============== Styles =================
 const NewBlogContainer = styled('div')({
@@ -101,7 +102,6 @@ const customTheme = (outerTheme: any) =>
   });
 // ========================================
 
-
 const BlogsList = () => {
   const outerTheme = useTheme();
 
@@ -116,17 +116,61 @@ const BlogsList = () => {
     )
   })
 
+  const NewBlogForm = () => {
+    const dispatch = useDispatch()
+    const [title, setTitle] = useState('')
+    const [content, setContent] = useState('')
+
+    const onSavePostClicked = () => {
+      if (title && content) {
+        dispatch(
+          blogAdded({
+            id: nanoid(),
+            title,
+            content,
+          })
+        )
+        setTitle('')
+        setContent('')
+      }
+    }
+
+    return (
+      <ThemeProvider theme={customTheme(outerTheme)}>
+        <NewBlogContainer>
+          <CustomTextField
+            variant="outlined"
+            placeholder="Enter blog title"
+            id="mui-theme-provider-outlined-input"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
+          <CustomTextField
+            variant="outlined"
+            placeholder="Enter blog content"
+            id="mui-theme-provider-outlined-input"
+            multiline
+            rows={5}
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
+          />
+          <Button
+            variant="contained"
+            type="button"
+            onClick={onSavePostClicked}
+          >
+            Submit
+          </Button>
+        </NewBlogContainer>
+      </ThemeProvider>
+    )
+  }
+
   return (
     <section id="blogsection">
       <SimpleBar style={{ maxHeight: '100vh' }}>
         <BlogGrid>
-          <ThemeProvider theme={customTheme(outerTheme)}>
-            <NewBlogContainer>
-              <CustomTextField variant="outlined" placeholder="Enter blog title" id="mui-theme-provider-outlined-input" />
-              <CustomTextField variant="outlined" placeholder="Enter blog content" id="mui-theme-provider-outlined-input" multiline rows={5}/>
-              <Button variant="contained"> Submit </Button>
-            </NewBlogContainer>
-          </ThemeProvider>
+          <NewBlogForm />
           {renderedBlogs}
         </BlogGrid>
       </SimpleBar>
