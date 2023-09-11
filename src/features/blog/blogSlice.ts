@@ -26,14 +26,14 @@ export const blogSlice = createSlice({
     name: 'blog',
     initialState,
     reducers: {
-        create: (state) => {
-            // state.push({id: 3, title: 'Third Post', content: 'More text'})
+        blogAdded: (state, action) => {
+          state.blogs.push(action.payload)
         },
     }
 })
 
 export const selectAllBlogs = (state: RootState) => state.blog.blogs
 
-export const { create } = blogSlice.actions;
+export const { blogAdded } = blogSlice.actions;
 
 export default blogSlice.reducer;
