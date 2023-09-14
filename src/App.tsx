@@ -4,6 +4,7 @@ import { Route, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './components/Home';
 import Blog from './features/blog/BlogsList';
+import StockChart from './features/stock/StockChart';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
             <Route index path="home" element={<Home />} />
             <Route path="blog" element={<Blog />} />
             <Route path="counter" element={<Counter />} />
+            <Route path="stockchart" element={<StockChart />} />
           </Route>
         </Routes>
       </header>

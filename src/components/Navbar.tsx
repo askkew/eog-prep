@@ -27,6 +27,7 @@ const Navbar = () => {
         <NavButton to="/home">Home</NavButton>
         <NavButton to="/blog">Blog</NavButton>
         <NavButton to="/counter">Counter</NavButton>
+        <NavButton to="/stockchart">Stocks</NavButton>
       </NavBar>
       <Outlet />
     </>

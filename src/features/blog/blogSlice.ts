@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { PayloadAction, createSlice, nanoid } from '@reduxjs/toolkit';
 import { RootState } from '../../app/store';
 
 // ====== interfaces ======
@@ -26,9 +26,20 @@ export const blogSlice = createSlice({
     name: 'blog',
     initialState,
     reducers: {
-        blogAdded: (state, action) => {
+      blogAdded: {
+        reducer(state, action: PayloadAction<Blog>) {
           state.blogs.push(action.payload)
         },
+        prepare(title, content): { payload: Blog } {
+          return {
+            payload: {
+              id: Number(nanoid()),
+              title,
+              content
+            }
+          }
+        }
+      }
     }
 })
 

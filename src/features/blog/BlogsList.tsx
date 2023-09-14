@@ -4,8 +4,8 @@ import { nanoid } from '@reduxjs/toolkit'
 import { blogAdded, selectAllBlogs } from './blogSlice'
 import { Button, TextField } from '@mui/material'
 import styled from '@emotion/styled'
-import SimpleBar from "simplebar-react";
-import 'simplebar-react/dist/simplebar.min.css';
+// import SimpleBar from "simplebar-react";
+// import 'simplebar-react/dist/simplebar.min.css';
 import { createTheme, ThemeProvider, useTheme } from '@mui/material/styles';
 
 // =============== Styles =================
@@ -54,7 +54,7 @@ const BlogGrid = styled('div')({
   flexWrap: 'wrap',
   alignContent: 'flex-start',
   gap: '2em',
-  width: '100vw',
+  width: '90vw',
   marginTop: '1em',
 })
 
@@ -80,7 +80,7 @@ const customTheme = (outerTheme: any) =>
         styleOverrides: {
           root: {
             '& $notchedOutline': {
-              borderColor: 'var(--TextField-brandBorderColor)', // Change border color to white
+              borderColor: 'rgba(255, 255, 255, 0.85)', // Change border color to white
             },
             '&:hover $notchedOutline': {
               borderColor: 'var(--TextField-brandBorderHoverColor)', // Change hover border color (if needed)
@@ -124,11 +124,7 @@ const BlogsList = () => {
     const onSavePostClicked = () => {
       if (title && content) {
         dispatch(
-          blogAdded({
-            id: nanoid(),
-            title,
-            content,
-          })
+          blogAdded(title, content)
         )
         setTitle('')
         setContent('')
@@ -168,12 +164,12 @@ const BlogsList = () => {
 
   return (
     <section id="blogsection">
-      <SimpleBar style={{ maxHeight: '100vh' }}>
+      {/* <SimpleBar> */}
         <BlogGrid>
           <NewBlogForm />
           {renderedBlogs}
         </BlogGrid>
-      </SimpleBar>
+      {/* </SimpleBar> */}
     </section>
   )
 }
